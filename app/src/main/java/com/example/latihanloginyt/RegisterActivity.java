@@ -55,9 +55,9 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<Register> call, Response<Register> response) {
                 if(response.body() != null && response.isSuccessful() && response.body().isStatus()){
                     Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    /*Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
-                    finish();*/
+                    finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -66,9 +66,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Register> call, Throwable t) {
                 Toast.makeText(RegisterActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                /*Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish();
+                finish();*/
             }
         });
     }
