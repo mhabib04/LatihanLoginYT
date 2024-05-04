@@ -18,34 +18,13 @@ public class ApiClient {
 
     public static Retrofit getClient() {
 
-        /*if(retrofit == null){
+        if(retrofit == null){
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
 
-        return retrofit;*/
-
-        if (retrofit == null) {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .addInterceptor(interceptor)
-                    .retryOnConnectionFailure(true)
-                    .connectTimeout(15, TimeUnit.SECONDS)
-                    .build();
-
-            Gson gson = new GsonBuilder()
-                    .setLenient()
-                    .create();
-
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .client(client)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build();
-        }
         return retrofit;
 
     }

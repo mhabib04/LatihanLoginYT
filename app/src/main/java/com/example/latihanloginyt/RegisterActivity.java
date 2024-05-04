@@ -2,6 +2,7 @@ package com.example.latihanloginyt;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,21 +30,27 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btnRegister.setOnClickListener(v -> {
-            usernameRegister = binding.etUsernameRegister.getText().toString().trim();
-            passwordRegister = binding.etPasswordRegister.getText().toString().trim();
-            nameRegister = binding.etNameRegister.getText().toString().trim();
-            if(usernameRegister.isEmpty() || nameRegister.isEmpty() || passwordRegister.isEmpty()){
-                Toast.makeText(RegisterActivity.this, "Please fill in all fields completely", Toast.LENGTH_SHORT).show();
-            } else {
-                register(usernameRegister, passwordRegister, nameRegister);
+        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                usernameRegister = binding.etUsernameRegister.getText().toString().trim();
+                passwordRegister = binding.etPasswordRegister.getText().toString().trim();
+                nameRegister = binding.etNameRegister.getText().toString().trim();
+                if(usernameRegister.isEmpty() || nameRegister.isEmpty() || passwordRegister.isEmpty()){
+                    Toast.makeText(RegisterActivity.this, "Please fill in all fields completely", Toast.LENGTH_SHORT).show();
+                } else {
+                    register(usernameRegister, passwordRegister, nameRegister);
+                }
             }
         });
 
-        binding.tvAlreadyHaveAccount.setOnClickListener(v -> {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+        binding.tvAlreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 
@@ -66,9 +73,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Register> call, Throwable t) {
                 Toast.makeText(RegisterActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();*/
             }
         });
     }

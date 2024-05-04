@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#A3D8FF"
     tools:context=".MainActivity">
 
     <TextView
@@ -27,12 +26,5 @@
         android:text="Name"
         android:layout_gravity="center"/>
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="Logout"/>
 
 </LinearLayout>
