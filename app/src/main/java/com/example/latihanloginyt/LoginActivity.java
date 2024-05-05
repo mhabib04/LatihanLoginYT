@@ -23,9 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin;
     TextView tvCreateAccount;
-
     EditText etUsernameLogin, etPasswordLogin;
-
     String usernameLogin, passwordLogin;
     ApiInterface apiInterface;
     SessionManager sessionManager;

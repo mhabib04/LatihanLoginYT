@@ -22,7 +22,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     Button btnRegister;
     TextView tvAlreadyHaveAccount;
-
     EditText etUsernameRegister, etPasswordRegister, etNameRegister;
     String usernameRegister, passwordRegister, nameRegister;
     ApiInterface apiInterface;
