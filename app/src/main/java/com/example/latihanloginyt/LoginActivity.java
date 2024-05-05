@@ -2,15 +2,16 @@ package com.example.latihanloginyt;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.latihanloginyt.api.ApiClient;
 import com.example.latihanloginyt.api.ApiInterface;
-import com.example.latihanloginyt.databinding.ActivityLoginBinding;
 import com.example.latihanloginyt.model.login.Login;
 import com.example.latihanloginyt.model.login.LoginData;
 
@@ -20,7 +21,11 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private ActivityLoginBinding binding;
+    Button btnLogin;
+    TextView tvCreateAccount;
+
+    EditText etUsernameLogin, etPasswordLogin;
+
     String usernameLogin, passwordLogin;
     ApiInterface apiInterface;
     SessionManager sessionManager;
@@ -28,24 +33,23 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        etUsernameLogin = findViewById(R.id.etUsernameLogin);
+        etPasswordLogin = findViewById(R.id.etPasswordLogin);
+        btnLogin = findViewById(R.id.btnLogin);
+        tvCreateAccount = findViewById(R.id.tvCreateAccount);
 
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                usernameLogin = binding.etUsernameLogin.getText().toString().trim();
-                passwordLogin = binding.etPasswordLogin.getText().toString().trim();
-                if(usernameLogin.isEmpty() || passwordLogin.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Please fill in all fields completely", Toast.LENGTH_SHORT).show();
-                } else {
-                    login(usernameLogin, passwordLogin);
-                }
+                usernameLogin = etUsernameLogin.getText().toString().trim();
+                passwordLogin = etPasswordLogin.getText().toString().trim();
+                login(usernameLogin, passwordLogin);
             }
         });
 
-        binding.tvCreateAccount.setOnClickListener(new View.OnClickListener() {
+        tvCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);

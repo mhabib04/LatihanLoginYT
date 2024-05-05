@@ -1,30 +1,28 @@
 package com.example.latihanloginyt;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.latihanloginyt.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     SessionManager sessionManager;
 
-    private ActivityMainBinding binding;
-
+    TextView etMainUsername, etMainName;
     String usernameMain, nameMain;
-    @SuppressLint("SetTextI18n")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        etMainUsername = findViewById(R.id.etMainUsername);
+        etMainName = findViewById(R.id.etMainName);
 
         sessionManager = new SessionManager(MainActivity.this);
         if(!sessionManager.isLoggedIn()){
@@ -34,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         usernameMain = sessionManager.getUserDetail().get(SessionManager.USERNAME);
         nameMain = sessionManager.getUserDetail().get(SessionManager.NAME);
 
-        binding.etMainUsername.setText("Username : " + usernameMain);
-        binding.etMainName.setText("Name : " +nameMain);
+        etMainUsername.setText(usernameMain);
+        etMainName.setText(nameMain);
     }
 
     private void moveToLogin() {

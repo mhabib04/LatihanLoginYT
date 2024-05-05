@@ -3,14 +3,15 @@ package com.example.latihanloginyt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.latihanloginyt.api.ApiClient;
 import com.example.latihanloginyt.api.ApiInterface;
-import com.example.latihanloginyt.databinding.ActivityRegisterBinding;
-import com.example.latihanloginyt.model.login.Login;
 import com.example.latihanloginyt.model.register.Register;
 
 import retrofit2.Call;
@@ -19,32 +20,35 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private ActivityRegisterBinding binding;
+    Button btnRegister;
+    TextView tvAlreadyHaveAccount;
+
+    EditText etUsernameRegister, etPasswordRegister, etNameRegister;
     String usernameRegister, passwordRegister, nameRegister;
     ApiInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
 
-        binding = ActivityRegisterBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        etUsernameRegister = findViewById(R.id.etUsernameRegister);
+        etNameRegister = findViewById(R.id.etNameRegister);
+        etPasswordRegister = findViewById(R.id.etPasswordRegister);
+        btnRegister = findViewById(R.id.btnRegister);
+        tvAlreadyHaveAccount = findViewById(R.id.tvAlreadyHaveAccount);
 
-        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                usernameRegister = binding.etUsernameRegister.getText().toString().trim();
-                passwordRegister = binding.etPasswordRegister.getText().toString().trim();
-                nameRegister = binding.etNameRegister.getText().toString().trim();
-                if(usernameRegister.isEmpty() || nameRegister.isEmpty() || passwordRegister.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, "Please fill in all fields completely", Toast.LENGTH_SHORT).show();
-                } else {
-                    register(usernameRegister, passwordRegister, nameRegister);
-                }
+                usernameRegister = etUsernameRegister.getText().toString().trim();
+                passwordRegister = etPasswordRegister.getText().toString().trim();
+                nameRegister = etNameRegister.getText().toString().trim();
+                register(usernameRegister, passwordRegister, nameRegister);
             }
         });
 
-        binding.tvAlreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
+        tvAlreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
