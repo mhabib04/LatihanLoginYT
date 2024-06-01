@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
                 usernameRegister = etUsernameRegister.getText().toString().trim();
                 passwordRegister = etPasswordRegister.getText().toString().trim();
                 nameRegister = etNameRegister.getText().toString().trim();
-                register(usernameRegister, passwordRegister, nameRegister);
+                register(usernameRegister, passwordRegister, nameRegister, "user");
             }
         });
 
@@ -57,9 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void register(String username, String password, String name) {
+    private void register(String username, String password, String name, String role) {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Register> registerCall = apiInterface.registerResponse(username,password, name);
+        Call<Register> registerCall = apiInterface.registerResponse(username,password, name,role);
         registerCall.enqueue(new Callback<Register>() {
             @Override
             public void onResponse(Call<Register> call, Response<Register> response) {
