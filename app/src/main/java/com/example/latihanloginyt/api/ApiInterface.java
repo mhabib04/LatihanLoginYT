@@ -22,7 +22,6 @@ public interface ApiInterface {
     Call<Register> registerResponse(
             @Field("username") String username,
             @Field("password") String password,
-            @Field("name") String name,
-            @Field("role") String role
+            @Field("name") String name
     );
 }
